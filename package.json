@@ -7,9 +7,13 @@
     "description": "A simple and lightweight caching solution for your Discord bot.",
     "main": "./index.js",
     "devDependencies": {
+        "@eslint/js": "^9.9.0",
         "@types/bun": "latest",
         "esbuild": "^0.23.0",
-        "typescript": "latest"
+        "eslint": "9.x",
+        "globals": "^15.9.0",
+        "typescript": "latest",
+        "typescript-eslint": "^8.0.1"
     },
     "keywords": [
         "caching",
