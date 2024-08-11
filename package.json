@@ -1,25 +1,31 @@
 {
-  "name": "cache-keeper",
-  "version": "1.0.0",
-  "author": "aquapi",
-  "license": "MIT",
-  "keywords": [],
-  "type": "module",
-  "main": "./index.js",
-  "types": "./index.d.ts",
-  "scripts": {
-    "build:test": "bun scripts/build.ts && bun test",
-    "build:publish": "bun scripts/publish.ts",
-    "lint": "eslint ./src",
-    "lint:fix": "eslint ./src --fix"
-  },
-  "devDependencies": {
-    "@stylistic/eslint-plugin": "latest",
-    "eslint": "latest",
-    "typescript-eslint": "latest",
-    "eslint-plugin-jsdoc": "latest",
-    "@types/bun": "latest",
-    "mitata": "latest",
-    "typescript": "latest"
-  }
+    "name": "cache-keeper",
+    "version": "1.0.0",
+    "homepage": "https://github.com/DevVali/cache-keeper",
+    "repository": "https://github.com/DevVali/cache-keeper",
+    "author": "DevVali",
+    "description": "A simple and lightweight caching solution for your Discord bot.",
+    "main": "./index.js",
+    "devDependencies": {
+        "@stylistic/eslint-plugin": "latest",
+        "eslint": "latest",
+        "typescript-eslint": "latest",
+        "eslint-plugin-jsdoc": "latest",
+        "@types/bun": "latest",
+        "mitata": "latest",
+        "typescript": "latest"
+    },
+    "keywords": [],
+    "license": "MIT",
+    "scripts": {
+        "build:test": "bun scripts/build.ts && bun test",
+        "build:publish": "bun build:test && bun scripts/publish.ts",
+        "lint": "eslint ./src",
+        "lint:fix": "eslint ./src --fix"
+    },
+    "type": "module",
+    "types": "./index.d.ts",
+    "dependencies": {
+        "@discordjs/collection": "^2.1.0"
+    }
 }

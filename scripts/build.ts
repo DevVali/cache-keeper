@@ -1,25 +1,29 @@
-/// <reference types='bun-types' />
-import { existsSync, rmSync } from 'fs';
-import pkg from '../package.json';
-import { Glob } from 'bun';
-import { exec } from './utils';
+import { existsSync, rmSync } from "fs";
+import { exec } from "./utils";
 
-const outdir = './lib';
-
-// Generating types
+const outdir = "./lib";
 if (existsSync(outdir)) rmSync(outdir, { recursive: true });
 
-// Build source files
-Bun.build({
-    format: 'esm',
-    target: 'bun',
-    outdir,
-    entrypoints: [...new Glob('src/*.ts').scanSync('.')],
-    minify: {
-        whitespace: true
-    },
-    // @ts-ignore
-    external: Object.keys(pkg.dependencies ?? {})
+exec`bun x tsc`;
+
+const transpiler = new Bun.Transpiler({
+    loader: "tsx",
+    minifyWhitespace: true,
+    treeShaking: true,
 });
 
-await exec`bun x tsc`;
+for await (const path of new Bun.Glob("**/*.ts").scan("./src"))
+    Bun.file(`./src/${path}`)
+        .arrayBuffer()
+        .then((buf) =>
+            transpiler
+                .transform(buf)
+                .then((res) =>
+                    res.length !== 0
+                        ? Bun.write(
+                              `${outdir}/${path.slice(0, -2) + "js"}`,
+                              res
+                          )
+                        : null
+                )
+        );
