@@ -15,7 +15,13 @@
         "mitata": "latest",
         "typescript": "latest"
     },
-    "keywords": [],
+    "keywords": [
+        "caching",
+        "cache",
+        "cache-storage",
+        "discord-bot",
+        "discord-js"
+    ],
     "license": "MIT",
     "scripts": {
         "build:test": "bun scripts/build.ts && bun test",
