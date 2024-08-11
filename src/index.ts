@@ -1,4 +1,4 @@
-import { Collection } from "@discordjs/collection";
+import { Collection } from '@discordjs/collection';
 
 interface CacheEntry<V> {
     value: V;
@@ -11,13 +11,13 @@ export class Keeper<K, V> {
 
     constructor(defaultTtl: number = 600000) {
         if (defaultTtl <= 0)
-            throw new RangeError("Default TTL must be a positive number");
+            throw new RangeError('Default TTL must be a positive number');
         this.cache = new Collection<K, CacheEntry<V>>();
         this.defaultTtl = defaultTtl;
     }
 
     set(key: K, value: V, ttl: number = this.defaultTtl): void {
-        if (ttl <= 0) throw new RangeError("TTL must be a positive number");
+        if (ttl <= 0) throw new RangeError('TTL must be a positive number');
         const expiresAt = Date.now() + ttl;
         this.cache.set(key, { value, expiresAt });
     }

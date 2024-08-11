@@ -33,10 +33,10 @@ const longCache = new Keeper(1800000);
     1. Specify a custom TTL for an entry that overrides the default
 
 ```ts
-cache.set("userId", "12345");
+cache.set('userId', '12345');
 
 // Set with a custom TTL of 5 minutes
-cache.set("username", "AwesomeUser", 300000);
+cache.set('username', 'AwesomeUser', 300000);
 ```
 
 ### Retrieving values
@@ -47,9 +47,9 @@ cache.set("username", "AwesomeUser", 300000);
     2. Set a default value to return if the entry is null
 
 ```ts
-console.log(cache.get("userId")); // "12345"
-console.log(cache.get("username"), false); // { value: "AwesomeUser", expiresAt: 1723320168561 }
-console.log(cache.get("userNickname", true, "DefaultNick")); // "DefaultNick"
+console.log(cache.get('userId')); // "12345"
+console.log(cache.get('username'), false); // { value: "AwesomeUser", expiresAt: 1723320168561 }
+console.log(cache.get('userNickname', true, 'DefaultNick')); // "DefaultNick"
 ```
 
 ### Other useful methods
@@ -76,9 +76,9 @@ interface UserData {
 
 const userCache = new Keeper<UserId, UserData>();
 
-userCache.set("12345", {
-    username: "AwesomeUser",
-    userNickname: "DefaultNick",
+userCache.set('12345', {
+    username: 'AwesomeUser',
+    userNickname: 'DefaultNick',
     createdTimestamp: 1723320168561,
 });
 ```

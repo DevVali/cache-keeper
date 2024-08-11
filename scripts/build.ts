@@ -1,27 +1,27 @@
-import * as esbuild from "esbuild";
-import { existsSync, rmSync } from "fs";
-import { exec } from "./utils";
+import * as esbuild from 'esbuild';
+import { existsSync, rmSync } from 'fs';
+import { exec } from './utils';
 
-const outdir = "./lib";
+const outdir = './lib';
 if (existsSync(outdir)) rmSync(outdir, { recursive: true });
 
 exec`bun x tsc`;
 
 const buildOptions: esbuild.BuildOptions = {
-    entryPoints: ["./src/**/*.ts"],
+    entryPoints: ['./src/**/*.ts'],
     outdir: outdir,
-    platform: "node",
+    platform: 'node',
     minifyWhitespace: true,
     treeShaking: true,
 };
 
 await esbuild.build({
     ...buildOptions,
-    format: "esm",
+    format: 'esm',
 });
 
 await esbuild.build({
     ...buildOptions,
-    format: "cjs",
-    outExtension: { ".js": ".cjs" },
+    format: 'cjs',
+    outExtension: { '.js': '.cjs' },
 });
