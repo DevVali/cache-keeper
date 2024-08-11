@@ -8,12 +8,13 @@
     "main": "./index.js",
     "devDependencies": {
         "@stylistic/eslint-plugin": "latest",
-        "eslint": "latest",
-        "typescript-eslint": "latest",
-        "eslint-plugin-jsdoc": "latest",
         "@types/bun": "latest",
+        "esbuild": "^0.23.0",
+        "eslint": "latest",
+        "eslint-plugin-jsdoc": "latest",
         "mitata": "latest",
-        "typescript": "latest"
+        "typescript": "latest",
+        "typescript-eslint": "latest"
     },
     "keywords": [
         "caching",
@@ -31,6 +32,12 @@
     },
     "type": "module",
     "types": "./index.d.ts",
+    "exports": {
+        ".": {
+            "import": "./index.js",
+            "require": "./index.cjs"
+        }
+    },
     "dependencies": {
         "@discordjs/collection": "^2.1.0"
     }
