@@ -18,7 +18,7 @@ npm install cache-keeper
 
 ### Creating a cache instance
 
-```js
+```ts
 // Create a cache with a default TTL of 10 minutes
 const cache = new Keeper();
 
@@ -32,8 +32,8 @@ const longCache = new Keeper(1800000);
 -   You can optionally
     1. Specify a custom TTL for an entry that overrides the default
 
-```js
-cache.set("userId", 12345);
+```ts
+cache.set("userId", "12345");
 
 // Set with a custom TTL of 5 minutes
 cache.set("username", "AwesomeUser", 300000);
@@ -46,8 +46,8 @@ cache.set("username", "AwesomeUser", 300000);
     1. Return the entire cache entry object
     2. Set a default value to return if the entry is null
 
-```js
-console.log(cache.get("userId")); // 12345
+```ts
+console.log(cache.get("userId")); // "12345"
 console.log(cache.get("username"), false); // { value: "AwesomeUser", expiresAt: 1723320168561 }
 console.log(cache.get("userNickname", true, "DefaultNick")); // "DefaultNick"
 ```
@@ -62,6 +62,26 @@ console.log(cache.get("userNickname", true, "DefaultNick")); // "DefaultNick"
 ### Advanced usage
 
 -   `clearExpired`: Removes all expired entries from the cache
+
+### TypeScript support
+
+```ts
+type UserId = string;
+
+interface UserData {
+    username: string;
+    userNickname: string;
+    createdTimestamp: number;
+}
+
+const userCache = new Keeper<UserId, UserData>();
+
+userCache.set("12345", {
+    username: "AwesomeUser",
+    userNickname: "DefaultNick",
+    createdTimestamp: 1723320168561,
+});
+```
 
 ## Resources
 
