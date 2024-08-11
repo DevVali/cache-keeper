@@ -1,8 +1,8 @@
-# Cache Keeper
-
 [![GitHub release](https://img.shields.io/github/release/DevVali/cache-keeper.svg)]()
 [![npm](https://img.shields.io/npm/dt/cache-keeper.svg)](https://img.shields.io/npm/dt/cache-keeper.svg)
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/DevVali/cache-keeper?tab=MIT-1-ov-file#readme)
+
+# Cache Keeper
 
 A simple and lightweight caching solution for your Discord bot.
 
@@ -10,7 +10,7 @@ A simple and lightweight caching solution for your Discord bot.
 
 To get started, install the library using npm (or your other favorite package manager):
 
-```
+```bash
 npm install cache-keeper
 ```
 
@@ -29,7 +29,8 @@ const longCache = new Keeper(1800000);
 ### Setting values
 
 -   Use the `set` method to store a key-value pair in the cache
--   You can optionally specify a custom TTL for an entry that overrides the default
+-   You can optionally
+    1. Specify a custom TTL for an entry that overrides the default
 
 ```js
 cache.set("userId", 12345);
@@ -48,7 +49,7 @@ cache.set("username", "AwesomeUser", 300000);
 ```js
 console.log(cache.get("userId")); // 12345
 console.log(cache.get("username"), false); // { value: "AwesomeUser", expiresAt: 1723320168561 }
-console.log(cache.get("userNickname", true, "banana")); // banana
+console.log(cache.get("userNickname", true, "DefaultNick")); // "DefaultNick"
 ```
 
 ### Other useful methods
