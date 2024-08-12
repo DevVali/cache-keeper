@@ -16,7 +16,7 @@ npm install cache-keeper
 
 ## Usage
 
-> <img align="top" src="https://upload.wikimedia.org/wikipedia/en/3/35/Information_icon.svg" alt="image" width="25" height="auto">&nbsp; The term TTL refers to Time to Live.
+> <img align="top" src="https://upload.wikimedia.org/wikipedia/en/3/35/Information_icon.svg" alt="image" width="25" height="auto"> The term TTL refers to Time to Live.
 
 ### Creating a cache instance
 
