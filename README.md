@@ -1,5 +1,5 @@
-[![GitHub release](https://img.shields.io/github/release/DevVali/cache-keeper.svg)]()
-[![npm](https://img.shields.io/npm/dt/cache-keeper.svg)](https://img.shields.io/npm/dt/cache-keeper.svg)
+[![GitHub release](https://img.shields.io/github/release/DevVali/cache-keeper.svg)](https://github.com/DevVali/cache-keeper/releases/latest)
+[![npm](https://img.shields.io/npm/dt/cache-keeper.svg)](https://www.npmjs.com/package/cache-keeper)
 [![GitHub license](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/DevVali/cache-keeper?tab=MIT-1-ov-file#readme)
 
 # Cache Keeper
@@ -16,7 +16,7 @@ npm install cache-keeper
 
 ## Usage
 
-> <img align="top" src="https://upload.wikimedia.org/wikipedia/en/3/35/Information_icon.svg" alt="image" width="25" height="auto"> The term TTL refers to Time to Live.
+> <img align="top" src="https://upload.wikimedia.org/wikipedia/en/3/35/Information_icon.svg" alt="image" width="25" height="auto">&nbsp; The term TTL refers to Time to Live.
 
 ### Creating a cache instance
 
