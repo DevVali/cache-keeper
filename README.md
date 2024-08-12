@@ -16,23 +16,24 @@ npm install cache-keeper
 
 ## Usage
 
+> <img align="top" src="https://upload.wikimedia.org/wikipedia/en/3/35/Information_icon.svg" alt="image" width="25" height="auto"> The term TTL refers to Time to Live.
+
 ### Creating a cache instance
 
-```ts
-// Create a cache with a default TTL of 10 minutes
+```js
+// Create a cache instance with a default TTL of 10 minutes
 const cache = new Keeper();
 
-// Create a cache with a custom default TTL of 30 minutes
+// Create a cache instance with a custom default TTL of 30 minutes
 const longCache = new Keeper(1800000);
 ```
 
 ### Setting values
 
 -   Use the `set` method to store a key-value pair in the cache
--   You can optionally
-    1. Specify a custom TTL for an entry that overrides the default
+-   You can optionally specify a custom TTL for an entry that overrides the default
 
-```ts
+```js
 cache.set('userId', '12345');
 
 // Set with a custom TTL of 5 minutes
@@ -41,46 +42,56 @@ cache.set('username', 'AwesomeUser', 300000);
 
 ### Retrieving values
 
--   Use the `get` method to retrieve the value from the cache
--   You can optionally
-    1. Return the entire cache entry object
-    2. Set a default value to return if the entry is null
+-   Use the `get` method to retrieve a value from the cache
+-   You can optionally specify a default value to return if the entry is not set
 
-```ts
-console.log(cache.get('userId')); // "12345"
-console.log(cache.get('username'), false); // { value: "AwesomeUser", expiresAt: 1723320168561 }
-console.log(cache.get('userNickname', true, 'DefaultNick')); // "DefaultNick"
+```js
+console.log(cache.get('userId')); // '12345'
+console.log(cache.get('userNickname', 'DefaultNick')); // 'DefaultNick'
 ```
 
 ### Other useful methods
 
--   `has`: Checks if a specific key exists in the cache
--   `delete`: Removes a key-value pair from the cache
+-   `has`: Checks if a key is cached
+-   `delete`: Removes an entry from the cache
 -   `clear`: Removes all entries from the cache
 -   `size`: Returns the current number of entries in the cache
 
 ### Advanced usage
 
+-   `getExpirationTime`: Returns the expiration time of an entry
 -   `clearExpired`: Removes all expired entries from the cache
 
 ### TypeScript support
 
+`cache-keeper` provides robust TypeScript support for type safety and code maintainability.
+
 ```ts
+// Define a type for the cache key
 type UserId = string;
 
+// Define an interface for the cache value
 interface UserData {
     username: string;
     userNickname: string;
     createdTimestamp: number;
 }
 
+// Create a cache instance using generic types for key and value types
 const userCache = new Keeper<UserId, UserData>();
 
+// Store user data in the cache
 userCache.set('12345', {
     username: 'AwesomeUser',
     userNickname: 'DefaultNick',
     createdTimestamp: 1723320168561,
 });
+
+// Retrieve user data from the cache
+if (userCache.has('12345')) {
+    const userData = userCache.get('12345')!;
+    console.log(userData.username); // TypeScript knows the shape of userData
+}
 ```
 
 ## Resources
