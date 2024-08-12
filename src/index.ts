@@ -22,19 +22,16 @@ export class Keeper<K, V> {
         this.cache.set(key, { value, expiresAt });
     }
 
-    get(
-        key: K,
-        dataOnly: boolean = true,
-        defaultValue: V | null = null
-    ): V | CacheEntry<V> | null {
+    get(key: K, defaultValue: V | null = null): V | null {
         if (!this.has(key)) return defaultValue;
         const entry = this.cache.get(key)!;
-        return dataOnly ? entry.value : entry;
+        return entry.value;
     }
 
     has(key: K): boolean {
         const entry = this.cache.get(key);
-        if (!entry || Date.now() > entry.expiresAt) {
+        if (!entry) return false;
+        if (Date.now() > entry.expiresAt) {
             this.cache.delete(key);
             return false;
         }
@@ -51,6 +48,12 @@ export class Keeper<K, V> {
 
     size(): number {
         return this.cache.size;
+    }
+
+    getExpirationTime(key: K) {
+        if (!this.has(key)) return null;
+        const entry = this.cache.get(key)!;
+        return entry.expiresAt;
     }
 
     clearExpired(): void {
