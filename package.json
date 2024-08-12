@@ -1,21 +1,27 @@
 {
     "name": "cache-keeper",
-    "version": "1.0.0",
+    "version": "1.1.0",
     "homepage": "https://github.com/DevVali/cache-keeper",
     "repository": "https://github.com/DevVali/cache-keeper",
     "author": "DevVali",
     "description": "A simple and lightweight caching solution for your Discord bot.",
     "main": "./index.js",
     "devDependencies": {
-        "@stylistic/eslint-plugin": "latest",
-        "eslint": "latest",
-        "typescript-eslint": "latest",
-        "eslint-plugin-jsdoc": "latest",
+        "@eslint/js": "^9.9.0",
         "@types/bun": "latest",
-        "mitata": "latest",
-        "typescript": "latest"
+        "esbuild": "^0.23.0",
+        "eslint": "9.x",
+        "globals": "^15.9.0",
+        "typescript": "latest",
+        "typescript-eslint": "^8.0.1"
     },
-    "keywords": [],
+    "keywords": [
+        "caching",
+        "cache",
+        "cache-storage",
+        "discord-bot",
+        "discord-js"
+    ],
     "license": "MIT",
     "scripts": {
         "build:test": "bun scripts/build.ts && bun test",
@@ -25,6 +31,12 @@
     },
     "type": "module",
     "types": "./index.d.ts",
+    "exports": {
+        ".": {
+            "import": "./index.js",
+            "require": "./index.cjs"
+        }
+    },
     "dependencies": {
         "@discordjs/collection": "^2.1.0"
     }

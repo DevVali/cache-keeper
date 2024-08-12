@@ -1,29 +1,27 @@
-import { existsSync, rmSync } from "fs";
-import { exec } from "./utils";
+import * as esbuild from 'esbuild';
+import { existsSync, rmSync } from 'fs';
+import { exec } from './utils';
 
-const outdir = "./lib";
+const outdir = './lib';
 if (existsSync(outdir)) rmSync(outdir, { recursive: true });
 
 exec`bun x tsc`;
 
-const transpiler = new Bun.Transpiler({
-    loader: "tsx",
+const buildOptions: esbuild.BuildOptions = {
+    entryPoints: ['./src/**/*.ts'],
+    outdir: outdir,
+    platform: 'node',
     minifyWhitespace: true,
     treeShaking: true,
+};
+
+await esbuild.build({
+    ...buildOptions,
+    format: 'esm',
 });
 
-for await (const path of new Bun.Glob("**/*.ts").scan("./src"))
-    Bun.file(`./src/${path}`)
-        .arrayBuffer()
-        .then((buf) =>
-            transpiler
-                .transform(buf)
-                .then((res) =>
-                    res.length !== 0
-                        ? Bun.write(
-                              `${outdir}/${path.slice(0, -2) + "js"}`,
-                              res
-                          )
-                        : null
-                )
-        );
+await esbuild.build({
+    ...buildOptions,
+    format: 'cjs',
+    outExtension: { '.js': '.cjs' },
+});
