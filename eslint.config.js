@@ -17,5 +17,5 @@ export default [
             '@typescript-eslint/no-explicit-any': 'off',
         },
     },
-    { ignores: ['lib'] },
+    { ignores: ['bun.lockb', 'lib'] },
 ];
